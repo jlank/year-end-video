@@ -1,0 +1,20 @@
+{
+  "name": "video-2014",
+  "version": "0.0.0",
+  "description": "",
+  "main": "list_files.js",
+  "dependencies": {
+    "async": "^0.9.0",
+    "exiftool": "0.0.3",
+    "findit": "^2.0.0",
+    "gps-util": "0.0.26",
+    "moment": "^2.8.4",
+    "request": "^2.51.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
