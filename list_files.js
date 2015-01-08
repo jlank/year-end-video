@@ -83,7 +83,7 @@ finder.on('file', function (file, stat) {
 
   var extension = re.exec(file.toLowerCase())[0];
 
-  if (extension === '.mov' || extension === 'mp4') {
+  if (extension === '.mov' || extension === '.mp4') {
 
     var m = moment(Date.parse(stat.mtime))
 
