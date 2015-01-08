@@ -7,6 +7,7 @@ var gps_util  = require('gps-util');
 var request   = require('request');
 var async     = require('async');
 
+console.log('year\tmonth\tday\tmonthday\tlink\tcity\tstate');
 var convert_gps = function (gps) {
   if (!gps) return 0;
 
@@ -21,7 +22,6 @@ var convert_gps = function (gps) {
   return gps_util.toDD(Number(gps[0]), Number(gps[1]), Number(gps[2]));
 }
 
-//var get_info = function (file) {
 var q = async.queue(function (file, callback) {
 
   fs.readFile(file, function (err, data) {
@@ -46,7 +46,7 @@ var q = async.queue(function (file, callback) {
 
         var f = file.split('Masters')[1];
 
-        row += 'http://localhost:8000' + f + '\t';
+        row += '=HYPERLINK("http://localhost:8000' + f + '")\t';
 
         if (lat !== 0 && lon !== 0) {
           request.get('http://localhost:4000/gps/' + lat + '/' + lon, function (e, r, b) {
@@ -92,13 +92,17 @@ finder.on('file', function (file, stat) {
     // if it falls in 2014 or one day on either end, push it in the queue to get the data we want (date and gps)
     if (date_string === '2013-12-31' || date_string === '2015-01-01' || m.format('YYYY') === '2014') {
 
-      q.push(file);
-      //console.log(date_string);
+      // also it has to be smaller than 1GB
+      if (stat.size < 1000000000) {
+
+        q.push(file);
+        //console.log(date_string);
+      }
     }
   }
 });
 
 finder.on('error', function (error) {
-  console.log(error)
+  console.log(error);
   finder.stop();
 });
