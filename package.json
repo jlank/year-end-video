@@ -5,9 +5,11 @@
   "main": "list_files.js",
   "dependencies": {
     "async": "^0.9.0",
+    "csvtojson": "^0.3.17",
     "exiftool": "0.0.3",
     "findit": "^2.0.0",
     "gps-util": "0.0.26",
+    "json2csv": "^2.2.1",
     "moment": "^2.8.4",
     "request": "^2.51.0"
   },
